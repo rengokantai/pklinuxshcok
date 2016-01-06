@@ -60,4 +60,21 @@ echo $ip
 fi) &
 done
 ```
+sftp
+```
+sftp -oPort=33 user@host
+```
+scp
+```
+scp filename user@host:/home/path
+```
 
+iwlist
+```
+iwlist scan
+```
+
+redirect local 8000 to remote 80
+```
+ssh -L 8000:domain:80 user@localhost/remotehost
+```
