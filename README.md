@@ -39,8 +39,32 @@ echo abc |sed 's/a/A' | sed 's/c/C'
 echo abc |sed 's/a/A/;s/c/C/'
 echo abc |sed -e 's/a/A/' -e 's/c/C/'
 ```
+awk
+```
+echo hello |awk 'BEGIN {print "start"} {print $0}END{print "end"}'
+```
+awk -v
+```
+V = 100
+echo | awk -v VAR=$V '{print VAR}'
+```
+alternate:
+```
+V = 100
+echo | awk  '{print VAR}' VAR=$V
+```
 
 
+Examp:
+remove js comments: /* */
+```
+sed 's:/\*.*\*/::g
+```
+(no escape char)
+Remove spaces before or after parentheses:
+```
+sed 's/ \?\([{}();,:]\) \?/\1/g'
+```
 
 - cp5
 
