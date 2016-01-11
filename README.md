@@ -65,6 +65,15 @@ Remove spaces before or after parentheses:
 ```
 sed 's/ \?\([{}();,:]\) \?/\1/g'
 ```
+paste (multi column)
+```
+paste file1 file2 -d ","
+```
+
+
+
+
+
 
 - cp5
 
