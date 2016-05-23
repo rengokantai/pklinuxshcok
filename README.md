@@ -75,7 +75,7 @@ paste file1 file2 -d ","
 
 
 
-- cp5
+#####cp5
 ######Downloading from a web page
 ```
 wget http://.. -O filename -o otherlocation
@@ -174,11 +174,97 @@ do
   fi
 done < link.txt
 ```
+######Posting to a website
+```
+curl http:// -d"k1=v1&k2=v2"
+
+wget http:// --post-data "k1=v1&k2=v2"
+```
+#####cp6 The backup plan
+######archiving with tar
+list file
+```
+tar -tf x.tar
+```
+tar
+```
+tar -cf out.tar a b c
+```
+append a file
+```
+tar -rf original.tar newfile
+```
+zip a bundle and using ssh to send
+```
+tar cvf - files/ | ssh user@host "tar xv -C dest/"
+```
+append tar1, tar2 to tar1
+```
+tar -Af 1.tar 2.tar
+```
+exclude file
+```
+tar cvf a.tar * --exclude "*.txt"
+```
+using a list file to exclude
+```
+cat list.txt
+```
+see
+```
+filea
+fileb
+```
+then use
+```
+tar -cf a.tar * -X list.txt
+```
+printing total
+```
+tar -cf a.tar * --totals
+```
 
 
 
-
-- cp7
+delete a file from tar
+```
+tar --delete --file a.tar file1 file2
+```
+######Archiving with cpio
+```
+touch a b
+echo a b | cpio -ov > new.cpio
+```
+list file
+```
+cpio -it < new.cpio
+```
+extract
+```
+cpio -id <new.cpio
+```
+######compressing using gzip
+```
+gzip filename
+gunzip filename.gz
+```
+list properties
+```
+gzip -l a.gz
+```
+specify output -c
+```
+cat file > gzip -c >file.gz
+```
+using tar to specify gzip format
+```
+tar -cavvf a.tar.gz file
+```
+or
+```
+tar a.tar file
+gzip a.tar
+#####cp7
 change MAC
 ```
 ifconfig eth0 hw ether 00:00:00:00:00:00
@@ -245,4 +331,22 @@ iwlist scan
 redirect local 8000 to remote 80
 ```
 ssh -L 8000:domain:80 user@localhost/remotehost
+```
+
+
+#####8 put on the monitor's cap
+```
+du file1 file2
+```
+check files in a dict
+```
+du -a dict
+```
+using -c to get total size of multi files
+```
+du -c file1 file2
+```
+only print total
+```
+du -s dict
 ```
