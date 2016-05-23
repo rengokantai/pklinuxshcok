@@ -446,3 +446,45 @@ logger -t TAG message
 tail -n 1 /var/log/messages
 logger -f /var/log/source.log
 ```
+#####9 Administration calls
+######Gathering Information
+ps -o //specify output field
+```
+ps -eo comm,pcpu
+```
+all var:
+```
+pcpu pid ppid pmem comm cmd user nice time etime rry euid stat
+```
+sort. +: ascending -: descending
+```
+ps -eo comm,pcpu --sort -pcpu 
+```
+ps -C
+```
+ps -C cmdname -o pid=
+```
+pgrep
+```
+pgrep -d ":"
+pgrep -u root,ubuntu cmd
+```
+-u: effective user -U: real user
+```
+ps -u root -U root use,pcpu
+```
+specify tty
+```
+ps -t pts/0,pts/1
+```
+prepend a environ var in bash
+```
+0 0 0 0 0 VARNAME=:0 /command
+```
+corresponding command
+```
+which
+whereis
+whatis
+file (determine type)
+```
