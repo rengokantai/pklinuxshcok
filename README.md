@@ -264,6 +264,7 @@ or
 ```
 tar a.tar file
 gzip a.tar
+```
 #####cp7
 change MAC
 ```
@@ -349,4 +350,99 @@ du -c file1 file2
 only print total
 ```
 du -s dict
+```
+exclude files
+```
+du --exclude "wildcard" dict
+```
+from a file:
+```
+du --exclude-from filename dict
+```
+set maxdepth (note, find command is -maxdepth)
+```
+du --max-depth 2 dict
+```
+show file size in kb and sort
+```
+du -ak dir | sort -nrk 1 |head
+```
+improve: only sort file
+```
+find . -type f -exec du -k {} \; |sort -nrk 1 |head
+```
+######calculating the exec time for
+-o output /-a append (not overwrite)
+```
+time -a -o a.txt ls
+```
+using format(-f): %e: realtime %U:user
+```
+time -f "%U" -a -o time.log uname
+```
+
+others(hard!!!) see parameters
+######Collecting informations about log
+```
+w  //current logged in users + tty
+who // more detailed info
+users //only users
+```
+insert new lines
+```
+users | tr ' ' '\n' | sort |uniq
+```
+uptime
+```
+uptime | grep -Po '\d{2}\:\d{2}\:\d{2}'
+```
+
+last (previous boot and user logged in)
+```
+last -f /var/log/wtmp
+```
+user or reboot
+```
+last ubuntu
+last reboot
+```
+get failed user login session
+```
+lastb
+```
+######listing the top 10 CPU consuming
+(hard)
+######monitoring command output
+```
+watch ls
+watch -n 1 ls  (1 second interval)
+watch -d ls  (see diff)
+```
+######logging access to files and dict
+```
+apt-get install inotify-tools
+```
+(skipped)
+######Logfile management with logrotate
+```
+vim /etc/logrotate.d/program   //program = any, such as  apt-get ,ls ...
+```
+edit 
+```
+/var/log/program.log{
+  missingok //ignore if logfile is missing
+  notifempty  //rotate if not empty
+  size 30k
+    compress
+  weekly
+    rotate 5
+  create 0600 root root
+}
+```
+######Logging with syslog
+```
+logger long message
+logger -t TAG message 
+tail -n 1 /var/log/messages
+logger -f /var/log/source.log
 ```
