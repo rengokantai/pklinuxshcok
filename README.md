@@ -76,10 +76,103 @@ paste file1 file2 -d ","
 
 
 - cp5
+######Downloading from a web page
+```
+wget http://.. -O filename -o otherlocation
+```
+test times
+```
+wget -t 5 url
+```
+limit-rate
+```
+wget --limit-rate 20k url
+```
+--quota, -Q
+```
+wget -Q 100m url
+```
+resume a download
+```
+wget -c url
+```
+using username and password
+```
+wget --user username --password pass url
+```
 
-download web page as text
+
+######download web page as text
 ```
 lynx -dump url >new.txt
+```
+######primer on cURL
+```
+curl url --silent -o new_filename
+```
+Or use default name
+```
+curl url -O
+```
+using referer
+```
+curl --referer refererurl targeturl
+```
+with cookie
+```
+curl url --cookie "user=u;pass=p"
+curl url --cookie-jar file
+```
+with agent
+```
+curl --user-agent "Mozilla/5.0"
+```
+with auth
+```
+curl -u user:pass url
+```
+dump header
+```
+curl -I url
+```
+######Accessing gmail emails
+######Parsing data from a website
+```
+lynx -dump -nolist url | grep -o "Rank-.*" | sed -e 's/ *Rank-\([0-9]*\) *\(.*\)/\1\t\2/' | sort -n -k1 > res.txt
+```
+######Image crawler and downloader (hard)
+use two shifts, read file line by line using while 
+```
+whild read filename;
+do
+done < filename
+```
+######web photo album
+imagemagick  
+set width 100px
+```
+convert "$img" -resize "100x" "$img"
+```
+######Twitter command-line
+
+######creating a define
+```
+curl --slient http://www.directionaryapi.com/api/v1/references/learners/xml/$1?key=$apikey | grep -o \<dt\>.*\</dt\> | sed 's$</*[a-z]*>$$g'| head -n 2 |nl
+```
+######finding broken links
+```
+lynx -traversal $1 > /dev/null
+sort -u reject.dat >link.txt
+
+while read link;
+do
+  output = `curl -I $link -s | grep "HTTP/.*OK";
+  if [[ -z $output ]];
+  then
+    echo $link;
+    let count++;
+  fi
+done < link.txt
 ```
 
 
